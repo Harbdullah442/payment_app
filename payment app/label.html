@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Number Buttons</title>
+<style>
+  .number-button {
+    display: inline-block;
+    padding: 10px;
+    margin: 5px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: calc(100%/3 - 10px);
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Input field to display the numbers -->
+<input type="text" id="output" readonly>
+<br>
+
+<!-- Grid container for buttons -->
+<div class="grid-container">
+  <!-- Create buttons from 1 to 9 -->
+  <script>
+    // Function to append the value of the clicked button to the input field
+    function appendValue(value) {
+      document.getElementById("output").value += value;
+    }
+
+    // Create buttons from 1 to 9
+    for (let i = 1; i <= 9; i++) {
+      let button = document.createElement("button");
+      button.innerHTML = i;
+      button.className = "number-button";
+      // Add an event listener to each button
+      button.addEventListener("click", function() {
+        appendValue(i);
+      });
+      document.body.appendChild(button);
+    }
+  </script>
+
+  <!-- Button for the number 0 -->
+  <button class="number-button" onclick="appendValue('0')">0</button>
+
+  <!-- Additional Buttons -->
+  <button class="number-button" onclick="appendValue('.')">.</button>
+  <button class="number-button" onclick="appendValue('&rarr;')">&rarr;</button>
+</div>
+
+</body>
+</html>
